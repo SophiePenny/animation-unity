@@ -15,14 +15,14 @@ public class animation : MonoBehaviour
     void Update()
     {  
         anim.SetBool("stand", true);
+        anim.SetBool("walkleft", false);
+        anim.SetBool("walkright", false);
+        anim.SetBool("walkback", false);
+        
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             anim.SetBool("walkleft", true);
             anim.SetBool("stand", false);
-        }
-        else
-        {
-            anim.SetBool("walkleft", false);
         }
 
         if(Input.GetKey(KeyCode.RightArrow))
@@ -30,29 +30,16 @@ public class animation : MonoBehaviour
             anim.SetBool("walkright", true);
             anim.SetBool("stand", false);
         }
-        else
-        {
-            anim.SetBool("walkright", false);
-        }
 
-        if(Input.GetKey("d"))
+        if(Input.GetKey(KeyCode.UpArrow))
         {
-            anim.SetBool("walkright2", true);
+            anim.SetBool("walkback", true);
             anim.SetBool("stand", false);
         }
-        else
-        {
-            anim.SetBool("walkright2", false);
-        }
 
-        if(Input.GetKey("a"))
+        if(Input.GetKey(KeyCode.DownArrow))
         {
-            anim.SetBool("walkleft2", true);
-            anim.SetBool("stand", false);
-        }
-        else
-        {
-            anim.SetBool("walkleft2", false);
+            anim.SetBool("stand", true);
         }
     }
 }
