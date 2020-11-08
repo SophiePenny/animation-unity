@@ -5,7 +5,7 @@ using UnityEngine;
 public class animation : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Animator anim;
+    public Animator anim;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -14,32 +14,12 @@ public class animation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        anim.SetBool("stand", true);
-        anim.SetBool("walkleft", false);
-        anim.SetBool("walkright", false);
-        anim.SetBool("walkback", false);
-        
-        if(Input.GetKey(KeyCode.LeftArrow))
-        {
-            anim.SetBool("walkleft", true);
-            anim.SetBool("stand", false);
-        }
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"), 0.0f);
 
-        if(Input.GetKey(KeyCode.RightArrow))
-        {
-            anim.SetBool("walkright", true);
-            anim.SetBool("stand", false);
-        }
+        anim.SetFloat("Horizontal", movement.x);
+        anim.SetFloat("Vertical", movement.y);
+        anim.SetFloat("Magnitude", movement.magnitude);
 
-        if(Input.GetKey(KeyCode.UpArrow))
-        {
-            anim.SetBool("walkback", true);
-            anim.SetBool("stand", false);
-        }
-
-        if(Input.GetKey(KeyCode.DownArrow))
-        {
-            anim.SetBool("stand", true);
-        }
+        transform.position = transform.position + movement * Time.deltaTime;
     }
 }
